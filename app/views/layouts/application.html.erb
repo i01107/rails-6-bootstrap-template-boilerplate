@@ -1,16 +1,207 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BlVisitorManagementSystem</title>
+    <title>BL VMS</title>
+    <meta name="description" content="Centralized Transportation Mangement System demo App">
+    <meta name="keywords" content="Transportation, Software, System, Management">
+    <meta name="author" content="Nexanet Nusantara Berjaya">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= javascript_pack_tag 'stylesheetPreJS', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
-  <body>
-    <%= yield %>
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  </head>
+  
+
+  <body class="skin-default fixed-layout">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">VMS</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <i class="wi wi-sunrise"></i>
+                            <!-- <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" /> -->
+                            <!-- Light Logo icon -->
+                            <!-- <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /> -->
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span>
+                            <!-- dark Logo text -->
+                            <!-- <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" /> -->
+                            <!-- Light Logo text -->    
+                            <!-- <img src="https://assets.bukalapak.com/sigil/bukalapak-logo-primary.svg" class="light-logo" alt="homepage" /> -->
+                            <h6 class="light-logo">Company Name</h6>
+                        </span>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav me-auto">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <!-- <li class="nav-item">
+                            <form class="app-search d-none d-md-block d-lg-block">
+                                <input type="text" class="form-control" placeholder="Search & enter">
+                            </form>
+                        </li> -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- ============================================================== -->
+                        <!-- User Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown u-pro">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= image_tag 'user.jpg', alt: 'user' %> <span class="hidden-md-down">Mark &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <div class="dropdown-menu dropdown-menu-end animated flipInY">
+                                <!-- text-->
+                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i>My Profile</a>
+                                <!-- text-->
+                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i>My Balance</a>
+                                <!-- text-->
+                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i>Inbox</a>
+                                <!-- text-->
+                                <div class="dropdown-divider"></div>
+                                <!-- text-->
+                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i>Account Setting</a>
+                                <!-- text-->
+                                <div class="dropdown-divider"></div>
+                                <!-- text-->
+                                <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i>Logout</a>
+                                <!-- text-->
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End User Profile -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="user-pro"> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><%= image_tag 'user.jpg', alt: 'user-img', class: 'img-circle' %><span class="hide-menu">Mark Jeckson</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="javascript:void(0)"><i class="ti-user"></i>My Profile</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-wallet"></i>My Balance</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-email"></i>Inbox</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-settings"></i>Account Setting</a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <%= link_to '<i class="icon-speedometer"></i><span class="hide-menu">Dashboard</span>'.html_safe, root_path, class: 'waves-effect waves-dark', aria: { expanded: 'false'}, data: { turbolinks: 'false' } %>
+                        </li>
+                        <li class="nav-small-cap">--- MASTER DATA</li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h4 class="text-themecolor">Visitor Management System</h4>
+                    </div>
+                    <div class="col-md-7 align-self-center text-end">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <%= yield :breadcrumbs %>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <%= yield %>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <!-- <footer class="footer">
+            © 2021 Eliteadmin by themedesigner.in
+            <a href="https://www.wrappixel.com/">WrapPixel</a>
+        </footer> -->
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
   </body>
 </html>
